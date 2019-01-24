@@ -38,11 +38,25 @@ class MyHomePage extends StatelessWidget {
                         color: Colors.white,
                         size: 35.0,
                       ),
-                      onPressed: (){},
+                      onPressed: () {},
                     ),
                     Column(
                       children: <Widget>[
-
+                        Text(
+                          "Monday",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.0,
+                              letterSpacing: 1.5),
+                        ),
+                        Text(
+                          "JAN 25 2019",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.0,
+                              letterSpacing: 1.2,
+                              wordSpacing: 1.3),
+                        )
                       ],
                     )
                   ],
