@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fitness_dummy/appwidget/top_bar.dart';
 import 'package:flutter_fitness_dummy/themes/colors.dart';
 
 void main() => runApp(MyApp());
@@ -19,7 +20,13 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          TopBar(),
+        ],
+      ),
+    );
   }
 }
 
