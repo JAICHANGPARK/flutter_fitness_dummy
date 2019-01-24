@@ -14,6 +14,7 @@ class _RadialProgressState extends State<RadialProgress>
   Animation<double> _progressAnimation;
 
   double progressDegrees = 0;
+  var count = 0;
 
   @override
   void initState() {
@@ -23,12 +24,13 @@ class _RadialProgressState extends State<RadialProgress>
         AnimationController(vsync: this, duration: Duration(seconds: 3));
 
     _progressAnimation = Tween(begin: 0.0, end: 360.0)
-        .animate(_radialProgressAnimationController)
+        .animate(CurvedAnimation(parent: _radialProgressAnimationController, curve: Curves.decelerate))
           ..addListener(() {
-            progressDegrees =
-                widget.goalCompleted * _radialProgressAnimationController.value;
-
-            print(progressDegrees);
+            setState(() {
+              progressDegrees =
+                  widget.goalCompleted * _progressAnimation.value;
+              print(progressDegrees);
+            });
 
           });
 
