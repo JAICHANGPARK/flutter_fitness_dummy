@@ -47,15 +47,15 @@ class MyHomePage extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24.0,
-                              letterSpacing: 1.5),
+                              letterSpacing: 1.2),
                         ),
                         Text(
                           "JAN 25 2019",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
-                              letterSpacing: 1.2,
-                              wordSpacing: 1.3),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22.0,
+                            letterSpacing: 1.3,
+                          ),
                         )
                       ],
                     ),
