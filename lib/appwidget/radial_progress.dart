@@ -13,6 +13,8 @@ class _RadialProgressState extends State<RadialProgress>
   AnimationController _radialProgressAnimationController;
   Animation<double> _progressAnimation;
 
+  double progressDegrees = 0;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -20,8 +22,17 @@ class _RadialProgressState extends State<RadialProgress>
     _radialProgressAnimationController =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
 
-    _progressAnimation = Tween(begin: 0.0, end: 360.0).animate(_radialProgressAnimationController)
-    ..addListener(listener);
+    _progressAnimation = Tween(begin: 0.0, end: 360.0)
+        .animate(_radialProgressAnimationController)
+          ..addListener(() {
+            progressDegrees =
+                widget.goalCompleted * _radialProgressAnimationController.value;
+
+            print(progressDegrees);
+
+          });
+
+    _radialProgressAnimationController.forward();
   }
 
   @override
