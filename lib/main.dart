@@ -23,11 +23,14 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          TopBar(),
+          Stack(
+            children: <Widget>[
+              TopBar()
+
+            ],
+          ),
         ],
       ),
     );
   }
 }
-
-
