@@ -25,8 +25,29 @@ class MyHomePage extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              TopBar()
+              TopBar(),
+              Positioned(
+                top: 60.0,
+                left: 0.0,
+                right: 0.0,
+                child: Row(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                        size: 35.0,
+                      ),
+                      onPressed: (){},
+                    ),
+                    Column(
+                      children: <Widget>[
 
+                      ],
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ],
