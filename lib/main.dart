@@ -25,11 +25,11 @@ class MyHomePage extends StatefulWidget {
   MyHomePageState createState() => MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+class MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   HomePageBloc homePageBloc;
 
   AnimationController _iconAnimationController;
-
 
   @override
   void initState() {
@@ -130,11 +130,27 @@ class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMi
             right: 0.0,
             child: IconButton(
                 icon: AnimatedIcon(
-                    icon: AnimatedIcons.menu_close, progress: null),
-                onPressed: null),
+                    icon: AnimatedIcons.menu_close,
+                    progress: _iconAnimationController.view),
+                onPressed: () {
+                  setState(() {
+                    onIconPressed();
+                  });
+                }),
           )
         ],
       ),
     );
+  }
+
+  void onIconPressed() {
+    animationStatus
+        ? _iconAnimationController.reverse()
+        : _iconAnimationController.forward();
+  }
+
+  bool get animationStatus {
+    final AnimationStatus status = _iconAnimationController.status;
+    return status == AnimationStatus.completed;
   }
 }
