@@ -25,22 +25,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-
-  HomePageBloc homePageBloc = HomePageBloc();
+  HomePageBloc homePageBloc;
 
   @override
   void initState() {
     // TODO: implement initState
+    homePageBloc = HomePageBloc();
     super.initState();
-
   }
 
-  void _subtractDate() {
-
-  }
-
-  void _addDate() {
-//    selectedDate = selectedDate.add(Duration(days: 1));
+  @override
+  void dispose() {
+    homePageBloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -65,34 +62,38 @@ class MyHomePageState extends State<MyHomePage> {
                       ),
                       onPressed: () {
 //                        setState(() {});
-                        setState(() {
-                          _subtractDate();
-                        });
+
+                        homePageBloc.subtractDate();
                       },
                     ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            formatterDayOfWeek.format(selectedDate),
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24.0,
-                                color: Colors.white,
-                                letterSpacing: 1.2),
-                          ),
-                          Text(
-                            formatterDate.format(selectedDate),
-                            style: TextStyle(
+                    StreamBuilder(
+                        initialData: homePageBloc.selectedDate,
+                        stream: homePageBloc.dateSteam,
+                        builder: (context, snapshot) {
+                          return Expanded(
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  formatterDayOfWeek.format(snapshot.data),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24.0,
+                                      color: Colors.white,
+                                      letterSpacing: 1.2),
+                                ),
+                                Text(
+                                  formatterDate.format(snapshot.data),
+                                  style: TextStyle(
 //                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              color: Colors.white,
-                              letterSpacing: 1.3,
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                    letterSpacing: 1.3,
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
+                          );
+                        }),
                     Transform.rotate(
                       angle: 135.0,
                       child: IconButton(
@@ -103,9 +104,8 @@ class MyHomePageState extends State<MyHomePage> {
                           ),
                           onPressed: () {
 //                            setState(() {});
-                            setState(() {
-                              _addDate();
-                            });
+                            
+                            homePageBloc.addDate();
                           }),
                     )
                   ],
