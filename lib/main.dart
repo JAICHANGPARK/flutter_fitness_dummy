@@ -35,7 +35,8 @@ class MyHomePageState extends State<MyHomePage>
   void initState() {
     // TODO: implement initState
     homePageBloc = HomePageBloc();
-    _iconAnimationController = AnimationController(vsync: this);
+    _iconAnimationController =
+        AnimationController(vsync: this, duration: Duration(microseconds: 300));
     super.initState();
   }
 
@@ -128,15 +129,21 @@ class MyHomePageState extends State<MyHomePage>
             bottom: 50.0,
             left: 0.0,
             right: 0.0,
-            child: IconButton(
-                icon: AnimatedIcon(
-                    icon: AnimatedIcons.menu_close,
-                    progress: _iconAnimationController.view),
-                onPressed: () {
-                  setState(() {
-                    onIconPressed();
-                  });
-                }),
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.red, width: 4.0)),
+              child: IconButton(
+                  icon: AnimatedIcon(
+                      color: Colors.red,
+                      icon: AnimatedIcons.menu_close,
+                      progress: _iconAnimationController.view),
+                  onPressed: () {
+                    setState(() {
+                      onIconPressed();
+                    });
+                  }),
+            ),
           )
         ],
       ),
