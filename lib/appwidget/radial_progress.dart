@@ -31,6 +31,16 @@ class RadialPainter extends CustomPainter {
 
     Offset center = Offset(size.width / 2, size.height / 2);
     canvas.drawCircle(center, size.width / 2, paint);
+
+
+    Paint paint = Paint()
+      ..color = Colors.blue
+      ..shader = LinearGradient(colors: [
+        Colors.red, Colors.purple, Colors.purpleAccent
+      ])
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 8.0
+      ..style = PaintingStyle.stroke;
   }
 
   @override
