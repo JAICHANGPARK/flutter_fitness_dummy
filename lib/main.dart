@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fitness_dummy/appwidget/top_bar.dart';
+import 'package:flutter_fitness_dummy/date_utils.dart';
 import 'package:flutter_fitness_dummy/themes/colors.dart';
 
 void main() => runApp(MyApp());
@@ -23,14 +24,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-
-
   DateTime selectedDate = DateTime.now();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
+
+  void _subtractDate() {
+    selectedDate = selectedDate.subtract(Duration(days: 1));
+  }
+
+  void _addDate() {
+    selectedDate = selectedDate.add(Duration(days: 1));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +61,9 @@ class MyHomePageState extends State<MyHomePage> {
                         size: 35.0,
                       ),
                       onPressed: () {
+//                        setState(() {});
                         setState(() {
-
+                          _subtractDate();
                         });
                       },
                     ),
@@ -61,7 +71,7 @@ class MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "Monday",
+                            formatterDayOfWeek.format(selectedDate),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 24.0,
@@ -69,7 +79,7 @@ class MyHomePageState extends State<MyHomePage> {
                                 letterSpacing: 1.2),
                           ),
                           Text(
-                            "JAN 25 2019",
+                            formatterDate.format(selectedDate),
                             style: TextStyle(
 //                              fontWeight: FontWeight.bold,
                               fontSize: 20.0,
@@ -89,8 +99,9 @@ class MyHomePageState extends State<MyHomePage> {
                             size: 35.0,
                           ),
                           onPressed: () {
+//                            setState(() {});
                             setState(() {
-
+                              _addDate();
                             });
                           }),
                     )
