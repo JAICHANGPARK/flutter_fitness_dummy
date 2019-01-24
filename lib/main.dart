@@ -58,6 +58,16 @@ class MyHomePage extends StatelessWidget {
                               wordSpacing: 1.3),
                         )
                       ],
+                    ),
+                    Transform.rotate(
+                      angle: 135.0,
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                            size: 35.0,
+                          ),
+                          onPressed: () {}),
                     )
                   ],
                 ),
