@@ -25,97 +25,114 @@ class MyHomePage extends StatefulWidget {
   MyHomePageState createState() => MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
   HomePageBloc homePageBloc;
+
+  AnimationController _iconAnimationController;
+
 
   @override
   void initState() {
     // TODO: implement initState
     homePageBloc = HomePageBloc();
+    _iconAnimationController = AnimationController(vsync: this);
     super.initState();
   }
 
   @override
   void dispose() {
     homePageBloc.dispose();
+    _iconAnimationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          Stack(
+          Column(
             children: <Widget>[
-              TopBar(),
-              Positioned(
-                top: 60.0,
-                left: 0.0,
-                right: 0.0,
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 35.0,
-                      ),
-                      onPressed: () {
-//                        setState(() {});
-
-                        homePageBloc.subtractDate();
-                      },
-                    ),
-                    StreamBuilder(
-                        initialData: homePageBloc.selectedDate,
-                        stream: homePageBloc.dateSteam,
-                        builder: (context, snapshot) {
-                          return Expanded(
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  formatterDayOfWeek.format(snapshot.data),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24.0,
-                                      color: Colors.white,
-                                      letterSpacing: 1.2),
-                                ),
-                                Text(
-                                  formatterDate.format(snapshot.data),
-                                  style: TextStyle(
-//                              fontWeight: FontWeight.bold,
-                                    fontSize: 20.0,
-                                    color: Colors.white,
-                                    letterSpacing: 1.3,
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        }),
-                    Transform.rotate(
-                      angle: 135.0,
-                      child: IconButton(
+              Stack(
+                children: <Widget>[
+                  TopBar(),
+                  Positioned(
+                    top: 60.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: Row(
+                      children: <Widget>[
+                        IconButton(
                           icon: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white,
                             size: 35.0,
                           ),
                           onPressed: () {
+//                        setState(() {});
+
+                            homePageBloc.subtractDate();
+                          },
+                        ),
+                        StreamBuilder(
+                            initialData: homePageBloc.selectedDate,
+                            stream: homePageBloc.dateSteam,
+                            builder: (context, snapshot) {
+                              return Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Text(
+                                      formatterDayOfWeek.format(snapshot.data),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 24.0,
+                                          color: Colors.white,
+                                          letterSpacing: 1.2),
+                                    ),
+                                    Text(
+                                      formatterDate.format(snapshot.data),
+                                      style: TextStyle(
+//                              fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                        color: Colors.white,
+                                        letterSpacing: 1.3,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }),
+                        Transform.rotate(
+                          angle: 135.0,
+                          child: IconButton(
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white,
+                                size: 35.0,
+                              ),
+                              onPressed: () {
 //                            setState(() {});
 
-                            homePageBloc.addDate();
-                          }),
-                    )
-                  ],
-                ),
-              )
+                                homePageBloc.addDate();
+                              }),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              RadialProgress(),
             ],
           ),
-
-          RadialProgress(),
+          Positioned(
+            bottom: 50.0,
+            left: 0.0,
+            right: 0.0,
+            child: IconButton(
+                icon: AnimatedIcon(
+                    icon: AnimatedIcons.menu_close, progress: null),
+                onPressed: null),
+          )
         ],
       ),
     );
