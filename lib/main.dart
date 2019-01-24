@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fitness_dummy/appwidget/top_bar.dart';
+import 'package:flutter_fitness_dummy/blocs/home_page_bloc.dart';
 import 'package:flutter_fitness_dummy/date_utils.dart';
 import 'package:flutter_fitness_dummy/themes/colors.dart';
 
@@ -24,20 +25,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  DateTime selectedDate = DateTime.now();
+
+  HomePageBloc homePageBloc = HomePageBloc();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
   }
 
   void _subtractDate() {
-    selectedDate = selectedDate.subtract(Duration(days: 1));
+
   }
 
   void _addDate() {
-    selectedDate = selectedDate.add(Duration(days: 1));
+//    selectedDate = selectedDate.add(Duration(days: 1));
   }
 
   @override
