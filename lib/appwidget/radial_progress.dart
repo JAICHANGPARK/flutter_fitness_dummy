@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart' as math;
 
 class RadialProgress extends StatefulWidget {
   final double goalCompleted = 0.7;
@@ -32,15 +33,17 @@ class RadialPainter extends CustomPainter {
     Offset center = Offset(size.width / 2, size.height / 2);
     canvas.drawCircle(center, size.width / 2, paint);
 
-
-    Paint paint = Paint()
-      ..color = Colors.blue
-      ..shader = LinearGradient(colors: [
-        Colors.red, Colors.purple, Colors.purpleAccent
-      ])
+    Paint progressPaint = Paint()
+    
+      ..shader = LinearGradient(
+              colors: [Colors.red, Colors.purple, Colors.purpleAccent])
+          .createShader(Rect.fromCircle(center: center, radius: size.width / 2))
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 8.0
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 8.0;
+
+    canvas.drawArc(Rect.fromCircle(center: center, radius: size.width / 2),
+        math.radians(-90), math.radians(250), false, progressPaint);
   }
 
   @override
