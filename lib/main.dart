@@ -17,7 +17,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  MyHomePageState createState() => MyHomePageState();
+}
+
+class MyHomePageState extends State<MyHomePage> {
+
+
+  DateTime selectedDate = DateTime.now();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,26 +51,34 @@ class MyHomePage extends StatelessWidget {
                         color: Colors.white,
                         size: 35.0,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+
+                        });
+                      },
                     ),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          "Monday",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
-                              letterSpacing: 1.2),
-                        ),
-                        Text(
-                          "JAN 25 2019",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22.0,
-                            letterSpacing: 1.3,
+                    Expanded(
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            "Monday",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24.0,
+                                color: Colors.white,
+                                letterSpacing: 1.2),
                           ),
-                        )
-                      ],
+                          Text(
+                            "JAN 25 2019",
+                            style: TextStyle(
+//                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white,
+                              letterSpacing: 1.3,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Transform.rotate(
                       angle: 135.0,
@@ -67,7 +88,11 @@ class MyHomePage extends StatelessWidget {
                             color: Colors.white,
                             size: 35.0,
                           ),
-                          onPressed: () {}),
+                          onPressed: () {
+                            setState(() {
+
+                            });
+                          }),
                     )
                   ],
                 ),
