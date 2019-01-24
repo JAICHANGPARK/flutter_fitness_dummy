@@ -21,15 +21,14 @@ class _RadialProgressState extends State<RadialProgress>
     // TODO: implement initState
     super.initState();
     _radialProgressAnimationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
 
-    _progressAnimation = Tween(begin: 0.0, end: 360.0)
-        .animate(CurvedAnimation(parent: _radialProgressAnimationController, curve: Curves.decelerate))
+    _progressAnimation = Tween(begin: 0.0, end: 360.0).animate(
+        CurvedAnimation(parent: _radialProgressAnimationController, curve: Curves.easeIn))
           ..addListener(() {
             setState(() {
-              progressDegrees =
-                  widget.goalCompleted * _progressAnimation.value;
-              print(progressDegrees);
+              progressDegrees = widget.goalCompleted * _progressAnimation.value;
+
             });
 
           });
@@ -44,7 +43,7 @@ class _RadialProgressState extends State<RadialProgress>
         height: 200.0,
         width: 200.0,
       ),
-      painter: RadialPainter(250),
+      painter: RadialPainter(progressDegrees),
     );
   }
 }
@@ -84,6 +83,6 @@ class RadialPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     // TODO: implement shouldRepaint
-    return null;
+    return true;
   }
 }
