@@ -22,6 +22,7 @@ class _RadialProgressState extends State<RadialProgress>
     _radialProgressAnimationController.dispose();
     super.dispose();
   }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -29,15 +30,13 @@ class _RadialProgressState extends State<RadialProgress>
     _radialProgressAnimationController =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
 
-    _progressAnimation = Tween(begin: 0.0, end: 360.0).animate(
-        CurvedAnimation(parent: _radialProgressAnimationController, curve: Curves.easeIn))
-          ..addListener(() {
-            setState(() {
-              progressDegrees = widget.goalCompleted * _progressAnimation.value;
-
-            });
-
-          });
+    _progressAnimation = Tween(begin: 0.0, end: 360.0).animate(CurvedAnimation(
+        parent: _radialProgressAnimationController, curve: Curves.easeIn))
+      ..addListener(() {
+        setState(() {
+          progressDegrees = widget.goalCompleted * _progressAnimation.value;
+        });
+      });
 
     _radialProgressAnimationController.forward();
   }
@@ -48,6 +47,17 @@ class _RadialProgressState extends State<RadialProgress>
       child: Container(
         height: 200.0,
         width: 200.0,
+        padding: EdgeInsets.symmetric(vertical: 40.0),
+        child: AnimatedOpacity(
+            opacity: progressDegrees > 30 ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 500),
+          child: Column(
+            children: <Widget>[
+              Text("RUNNGING")
+            ],
+          ),
+
+        ),
       ),
       painter: RadialPainter(progressDegrees),
     );
