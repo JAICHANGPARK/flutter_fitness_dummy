@@ -4,9 +4,12 @@ import 'package:flutter_fitness_dummy/appwidget/radial_progress.dart';
 import 'package:flutter_fitness_dummy/appwidget/top_bar.dart';
 import 'package:flutter_fitness_dummy/blocs/home_page_bloc.dart';
 import 'package:flutter_fitness_dummy/date_utils.dart';
+import 'package:flutter_fitness_dummy/show_graph.dart';
 import 'package:flutter_fitness_dummy/themes/colors.dart';
 
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+
+void main() => runApp(ShowGraph());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
