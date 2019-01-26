@@ -49,14 +49,26 @@ class _RadialProgressState extends State<RadialProgress>
         width: 200.0,
         padding: EdgeInsets.symmetric(vertical: 40.0),
         child: AnimatedOpacity(
-            opacity: progressDegrees > 30 ? 1.0 : 0.0,
-            duration: Duration(milliseconds: 500),
+          opacity: progressDegrees > 30 ? 1.0 : 0.0,
+          duration: Duration(milliseconds: 500),
           child: Column(
             children: <Widget>[
-              Text("RUNNGING")
+              Text(
+                "RUNNGING",
+                style: TextStyle(fontSize: 24.0, letterSpacing: 1.5),
+              ),
+              SizedBox(
+                height: 4.0,
+              ),
+              Container(
+                height: 5.0,
+                width: 80.0,
+                decoration: BoxDecoration(
+                  color: Colors.purple,
+                ),
+              )
             ],
           ),
-
         ),
       ),
       painter: RadialPainter(progressDegrees),
