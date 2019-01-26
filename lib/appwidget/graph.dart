@@ -64,7 +64,7 @@ class _GraphBarState extends State<GraphBar> {
   void initState() {
     super.initState();
 
-    _percentageAnimation = Tween(begin: 0, end: widget.percentage)
+    _percentageAnimation = Tween<double>(begin: 0, end: widget.percentage)
         .animate(widget._graphBarAnimationController);
 
     _percentageAnimation.addListener((){
@@ -74,11 +74,18 @@ class _GraphBarState extends State<GraphBar> {
     });
 
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    widget._graphBarAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: BarPainter(widget.percentage),
+//      painter: BarPainter(widget.percentage),
+      painter: BarPainter(_percentageAnimation.value),
       child: Container(
         height: widget.height,
       ),
@@ -105,6 +112,7 @@ class BarPainter extends CustomPainter {
     Paint filledPaint = Paint()
       ..shader = LinearGradient(
         colors: [Colors.pink.shade500, Colors.blue.shade500],
+        begin: Alignment.topCenter,
       ).createShader(Rect.fromPoints(topPoint, bottomPoint))
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 5.0;
