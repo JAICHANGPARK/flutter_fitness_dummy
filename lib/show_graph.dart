@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fitness_dummy/appwidget/graph.dart';
 
 class ShowGraph extends StatefulWidget {
   @override
@@ -28,10 +29,19 @@ class _ShowGraphState extends State<ShowGraph>
       home: Scaffold(
         body: Container(
           alignment: Alignment.center,
-          child: Container(
-            color: Colors.grey,
-            height: 100.0,
+          child: InkWell(
+            onTap: () {
+              _graphAnimationController.forward();
+            },
+            child: Graph(
+              animationController : _graphAnimationController,
+
+            ),
           ),
+//          child: Container(
+//            color: Colors.grey,
+//            height: 100.0,
+//          ),
         ),
       ),
     );
