@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fitness_dummy/themes/colors.dart';
 
 class Graph extends StatelessWidget {
   final double height;
@@ -10,26 +11,29 @@ class Graph extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-child: GraphBar(),
-//      child: Row(
-//        mainAxisSize: MainAxisSize.max,
-//        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//        children: <Widget>[
-//          GraphBar(),
-//          GraphBar(),
-//          GraphBar(),
-//          GraphBar(),
-//          GraphBar(),
-//
-//        ],
-//      ),
+      padding: EdgeInsets.symmetric(horizontal: 32.0),
+//      child: GraphBar(),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          GraphBar(height, 0.5),
+          GraphBar(height, 0.8),
+          GraphBar(height, 0.7),
+          GraphBar(height, 0.9),
+          GraphBar(height, 0.1),
+        ],
+      ),
     );
   }
-
-
 }
 
 class GraphBar extends StatefulWidget {
+  final double percentage;
+  final double height;
+
+  GraphBar(this.height, this.percentage);
+
   @override
   _GraphBarState createState() => _GraphBarState();
 }
@@ -37,10 +41,48 @@ class GraphBar extends StatefulWidget {
 class _GraphBarState extends State<GraphBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 2,
-      color: Colors.blue,
+    return CustomPaint(
+      painter: BarPainter(widget.percentage),
+      child: Container(
+        height: widget.height,
+        width: 10.0,
+      ),
     );
   }
 }
 
+class BarPainter extends CustomPainter {
+  final double percentage;
+
+  BarPainter(this.percentage);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint greyPaint = Paint()
+      ..color = greyColor
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 5.0;
+    Offset topPoint = Offset(0, 0);
+    Offset bottomPoint = Offset(0, (size.height + 20));
+    Offset centerPoint = Offset(0, (size.height + 20) / 2);
+    canvas.drawLine(topPoint, bottomPoint, greyPaint);
+
+    Paint filledPaint = Paint()
+      ..shader = LinearGradient(
+        colors: [Colors.pink.shade500, Colors.blue.shade500],
+      ).createShader(Rect.fromPoints(topPoint, bottomPoint))
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 5.0;
+
+    double filledHeight = percentage * size.height;
+    double filledHalfHeight = filledHeight / 2;
+
+    canvas.drawLine(centerPoint, Offset(0, centerPoint.dy - filledHalfHeight), filledPaint);
+    canvas.drawLine(centerPoint, Offset(0, centerPoint.dy + filledHalfHeight), filledPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
+  }
+}
