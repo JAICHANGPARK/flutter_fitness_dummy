@@ -65,7 +65,15 @@ class _RadialProgressState extends State<RadialProgress>
                 width: 80.0,
                 decoration: BoxDecoration(
                   color: Colors.purple,
+                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text("1.453", style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),),
+              Text(
+                'CALORIES BURN', style: TextStyle(fontSize: 14.0, color: Colors.blue, letterSpacing: 1.5),
               )
             ],
           ),
