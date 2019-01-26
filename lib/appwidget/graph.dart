@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fitness_dummy/themes/colors.dart';
+import 'package:flutter_fitness_dummy/utils/fitness_data.dart';
 
 class Graph extends StatelessWidget {
   final double height;
   final AnimationController animationController;
-
-  Graph({this.animationController, this.height = 120});
+  final List<GraphData> values;
+  Graph({this.animationController, this.height = 120, this.values});
 
   @override
   Widget build(BuildContext context) {
+
+
+//    print(maxGraphData.value);
+
     return Container(
       height: height,
       padding: EdgeInsets.symmetric(horizontal: 32.0),
@@ -26,6 +31,13 @@ class Graph extends StatelessWidget {
       ),
     );
   }
+}
+
+_buildBars(values){
+  List<GraphBar> bars = List();
+  GraphData maxGraphData = values.reduce((current, next) => (next.compareTo(current) >= 1) ? next : current);
+  
+
 }
 
 class GraphBar extends StatefulWidget {

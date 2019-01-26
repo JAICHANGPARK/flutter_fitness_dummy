@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fitness_dummy/appwidget/graph.dart';
+import 'package:flutter_fitness_dummy/utils/fitness_data.dart';
 
 class ShowGraph extends StatefulWidget {
   @override
@@ -35,6 +36,7 @@ class _ShowGraphState extends State<ShowGraph>
             },
             child: Graph(
               animationController : _graphAnimationController,
+              values: dayData
 
             ),
           ),
