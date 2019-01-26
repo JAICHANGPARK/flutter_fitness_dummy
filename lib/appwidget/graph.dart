@@ -34,39 +34,53 @@ class Graph extends StatelessWidget {
 
   _buildBars(List<GraphData> values) {
     List<GraphBar> _bars = List();
-    GraphData maxGraphData = values.reduce((current, next) =>
-    (next.compareTo(current) >= 1) ? next : current);
+    GraphData maxGraphData = values.reduce(
+        (current, next) => (next.compareTo(current) >= 1) ? next : current);
 
     values.forEach((graphData) {
       double percentage = graphData.value / maxGraphData.value;
-      _bars.add(GraphBar(height, percentage));
+      _bars.add(GraphBar(height, percentage, animationController));
     });
 
     return _bars;
   }
-
-
 }
-
 
 class GraphBar extends StatefulWidget {
   final double percentage;
   final double height;
+  final AnimationController _graphBarAnimationController;
 
-  GraphBar(this.height, this.percentage);
+  GraphBar(this.height, this.percentage, this._graphBarAnimationController);
 
   @override
   _GraphBarState createState() => _GraphBarState();
 }
 
 class _GraphBarState extends State<GraphBar> {
+  Animation<double> _percentageAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _percentageAnimation = Tween(begin: 0, end: widget.percentage)
+        .animate(widget._graphBarAnimationController);
+
+    _percentageAnimation.addListener((){
+      setState(() {
+
+      });
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: BarPainter(widget.percentage),
       child: Container(
         height: widget.height,
-        width: 10.0,
       ),
     );
   }
