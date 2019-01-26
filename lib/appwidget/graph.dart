@@ -6,12 +6,11 @@ class Graph extends StatelessWidget {
   final double height;
   final AnimationController animationController;
   final List<GraphData> values;
+
   Graph({this.animationController, this.height = 120, this.values});
 
   @override
   Widget build(BuildContext context) {
-
-
 //    print(maxGraphData.value);
 
     return Container(
@@ -21,24 +20,34 @@ class Graph extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          GraphBar(height, 0.5),
-          GraphBar(height, 0.8),
-          GraphBar(height, 0.7),
-          GraphBar(height, 0.9),
-          GraphBar(height, 0.1),
-        ],
+        children: _buildBars(values),
+//        children: <Widget>[
+//          GraphBar(height, 0.5),
+//          GraphBar(height, 0.8),
+//          GraphBar(height, 0.7),
+//          GraphBar(height, 0.9),
+//          GraphBar(height, 0.1),
+//        ],
       ),
     );
   }
+
+  _buildBars(List<GraphData> values) {
+    List<GraphBar> _bars = List();
+    GraphData maxGraphData = values.reduce((current, next) =>
+    (next.compareTo(current) >= 1) ? next : current);
+
+    values.forEach((graphData) {
+      double percentage = graphData.value / maxGraphData.value;
+      _bars.add(GraphBar(height, percentage));
+    });
+
+    return _bars;
+  }
+
+
 }
 
-_buildBars(values){
-  List<GraphBar> bars = List();
-  GraphData maxGraphData = values.reduce((current, next) => (next.compareTo(current) >= 1) ? next : current);
-  
-
-}
 
 class GraphBar extends StatefulWidget {
   final double percentage;
@@ -89,8 +98,10 @@ class BarPainter extends CustomPainter {
     double filledHeight = percentage * size.height;
     double filledHalfHeight = filledHeight / 2;
 
-    canvas.drawLine(centerPoint, Offset(0, centerPoint.dy - filledHalfHeight), filledPaint);
-    canvas.drawLine(centerPoint, Offset(0, centerPoint.dy + filledHalfHeight), filledPaint);
+    canvas.drawLine(
+        centerPoint, Offset(0, centerPoint.dy - filledHalfHeight), filledPaint);
+    canvas.drawLine(
+        centerPoint, Offset(0, centerPoint.dy + filledHalfHeight), filledPaint);
   }
 
   @override
