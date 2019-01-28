@@ -2,6 +2,27 @@
 
 A new Flutter application.
 
+
+## Part 0
+
+<div style="text-align: center">
+  <table>
+    <tr>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt0/device-2019-01-24-231044.png" width="200">
+      </td>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt0/device-2019-01-24-230557.png" width="200">
+      </td>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt0/device-2019-01-24-221304.png" width="200">
+      </td> 
+    </tr>
+  </table>
+</div>
+
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
