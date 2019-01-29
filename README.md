@@ -3,6 +3,25 @@
 A new Flutter application.
 
 
+## Part 1
+
+<div style="text-align: center">
+  <table>
+    <tr>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt1/device-2019-01-26-124347.png" width="200">
+      </td>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt1/device-2019-01-26-124626.png" width="200">
+      </td>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt1/device-2019-01-26-125444.png" width="200">
+      </td> 
+    </tr>
+  </table>
+</div>
+
+
 ## Part 0
 
 <div style="text-align: center">
