@@ -2,6 +2,17 @@
 
 A new Flutter application.
 
+## Part 2
+
+<div style="text-align: center">
+  <table>
+    <tr>
+      <td style="text-align: center">
+        <img src="https://github.com/JAICHANGPARK/flutter_fitness_dummy/blob/master/screen_capture/pt2/device-2019-01-26-131339.png" width="200">
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## Part 1
 
